@@ -395,12 +395,28 @@ export default function RockPaperScissors() {
 
       {gameState === "waiting" && (
         <div className="flex flex-col gap-6">
-          <div className="p-6 border rounded-lg">
-            <h2 className="text-xl font-semibold mb-4">게임 생성하기</h2>
-            <Button onClick={createGame} className="w-full">새 게임 만들기</Button>
-            <p className="text-sm text-gray-500 mt-3">
-              상대에게 링크를 공유하고 접속하면 자동으로 시작됩니다.
-            </p>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="p-6 border rounded-lg">
+              <h2 className="text-xl font-semibold mb-4">게임 생성하기</h2>
+              <Button onClick={createGame} className="w-full">새 게임 만들기</Button>
+            </div>
+            
+            <div className="p-6 border rounded-lg">
+              <h2 className="text-xl font-semibold mb-4">게임 참가하기</h2>
+              <div className="flex gap-2 mb-4">
+                <input
+                  type="text"
+                  value={opponentId}
+                  onChange={(e) => setOpponentId(e.target.value)}
+                  placeholder="상대방 Peer ID"
+                  className="flex-1 p-2 border rounded"
+                />
+                <Button onClick={joinGame}>참가</Button>
+              </div>
+              <p className="text-sm text-gray-500">
+                상대방이 공유한 링크를 통해 접속하면 자동으로 ID가 입력됩니다.
+              </p>
+            </div>
           </div>
           
           {renderConnectionUrl()}
